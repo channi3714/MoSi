@@ -7,7 +7,7 @@
  * 여기서는 데이터 구조가 단순하므로 type을 사용
  */
 
-// 게시글 1개의 구조
+// 게시글 1개의 구조 (메인 페이지 게시판 그리드용 - 간략 버전)
 export type Post = {
   id: number;
   title: string; // 게시글 제목
@@ -15,6 +15,41 @@ export type Post = {
   createdAt: string; // 작성 시간 (예: "02/13 15:22")
   likes?: number; // 좋아요 수 (선택적)
   comments?: number; // 댓글 수 (선택적)
+};
+
+// 게시글 상세 (게시판 목록 페이지용 - 본문 미리보기 포함)
+export type PostDetail = {
+  id: number;
+  title: string;
+  content: string; // 본문 내용
+  author: string;
+  createdAt: string;
+  likes: number;
+  comments: number;
+  imageUrl?: string; // 첨부 이미지 (선택적)
+};
+
+// 게시글 전체 상세 (게시글 상세 페이지용 - 댓글 포함)
+export type PostFull = {
+  id: number;
+  title: string;
+  content: string;
+  author: string;
+  createdAt: string;
+  likes: number;
+  comments: number;
+  scraps: number;
+};
+
+// 댓글 1개
+export type Comment = {
+  id: number;
+  content: string;
+  author: string;
+  isAuthor: boolean; // 글쓴이 여부 (글쓴이면 "익명(글쓴이)"로 표시)
+  createdAt: string;
+  likes: number;
+  replies?: Comment[]; // 대댓글 (중첩 구조)
 };
 
 // 게시판 섹션 1개 (자유게시판, 비밀게시판 등)
